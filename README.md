@@ -1,1 +1,2 @@
-# pnplatform
+# Passing AWS Credentilas 
+
