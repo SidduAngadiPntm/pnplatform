@@ -21,12 +21,3 @@ variable "cidr_block" {
   type = string
   default = "10.0.0.0/20"
 }
-
-
-
-
-
-variable "public_subnet_1_az" {
-  description = "Availability Zone for public subnet 1"
-  type        = string
-}

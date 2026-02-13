@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "../terraform_modules/vpc"
+  source = "../../terraform_modules/vpc"
 
   environment            = var.environment
   resource_prefix        = var.resource_prefix

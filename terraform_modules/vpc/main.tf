@@ -27,7 +27,7 @@ resource "aws_subnet" "subnet" {
 resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
   tags = {
-    Name        = "${local.name}-igw}"
+    Name        = "${local.name}-igw"
     Environment = var.environment
   }
 }
@@ -48,8 +48,8 @@ resource "aws_route" "public_route" {
   gateway_id             = aws_internet_gateway.main.id
 }
 
-resource "aws_route_table_association" "public_subnet_1_rt_assoc" {
-  count = length(aws_subnet.subnet.*.id)
-  subnet_id      = aws_subnet.subnet[count.index].id
-  route_table_id = aws_route_table.public_rt.id
-}
+# resource "aws_route_table_association" "public_subnet_1_rt_assoc" {
+#   count = length(aws_subnet.subnet)
+#   subnet_id      = aws_subnet.subnet[count.index].id
+#   route_table_id = aws_route_table.public_rt.id
+# }
