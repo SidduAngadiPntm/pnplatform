@@ -14,13 +14,3 @@ variable "vpc_cidr_block" {
   default     = "10.0.0.0/16"
 }
 
-variable "public_subnet_1_cidr" {
-  description = "CIDR block for public subnet 1"
-  type        = string
-  default     = "10.0.1.0/24"
-}
-
-variable "public_subnet_1_az" {
-  description = "Availability Zone for public subnet 1"
-  type        = string
-}

@@ -5,7 +5,7 @@ output "vpc_id" {
 
 output "public_subnet_1_id" {
   description = "Public subnet 1 ID"
-  value       = aws_subnet.public_subnet_1.id
+  value       = aws_subnet.subnet.*.id
 }
 
 output "internet_gateway_id" {

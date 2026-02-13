@@ -4,37 +4,40 @@ resource "aws_vpc" "main" {
   enable_dns_support   = true
 
   tags = {
-    Name        = "${var.resource_prefix}-vpc-${var.environment}"
+    Name        = "${local.name}-vpc"
     Environment = var.environment
+  }
+}
+
+
+
+resource "aws_subnet" "subnet" {
+  for_each = local.subnets
+
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = each.value
+  availability_zone       = each.key
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name = "${local.name}-public-${each.key}"
   }
 }
 
 resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
-
   tags = {
-    Name        = "${var.resource_prefix}-igw-${var.environment}"
+    Name        = "${local.name}-igw}"
     Environment = var.environment
   }
 }
 
-resource "aws_subnet" "public_subnet_1" {
-  vpc_id                  = aws_vpc.main.id
-  cidr_block              = var.public_subnet_1_cidr
-  availability_zone       = var.public_subnet_1_az
-  map_public_ip_on_launch = true
-
-  tags = {
-    Name        = "${var.resource_prefix}-public-subnet-1-${var.environment}"
-    Environment = var.environment
-  }
-}
 
 resource "aws_route_table" "public_rt" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name        = "${var.resource_prefix}-public-rt-${var.environment}"
+    Name        = "${local.name}-public-rt"
     Environment = var.environment
   }
 }
@@ -46,6 +49,7 @@ resource "aws_route" "public_route" {
 }
 
 resource "aws_route_table_association" "public_subnet_1_rt_assoc" {
-  subnet_id      = aws_subnet.public_subnet_1.id
+  count = length(aws_subnet.subnet.*.id)
+  subnet_id      = aws_subnet.subnet[count.index].id
   route_table_id = aws_route_table.public_rt.id
 }
