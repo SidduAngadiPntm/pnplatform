@@ -1,0 +1,7 @@
+# COPY THIS FILE AS terraform.tfvars AND UPDATE WITH YOUR VALUES
+# This file is for reference only and will be committed to git
+
+aws_region      = "eu-north-1"  # Change to your preferred AWS region
+environment     = "dev"          # dev, staging, or prod
+resource_prefix = "your-name"    # Use your name or identifier (e.g., ashutosh, john, sarah)
+
