@@ -3,12 +3,12 @@ variable "aws_region" {
   type        = string
 }
 
-variable "environment" {
-  description = "Environment name"
+variable "resource_prefix" {
+  description = "Prefix for resource names"
   type        = string
 }
 
-variable "resource_prefix" {
-  description = "Prefix for resource names"
+variable "environment" {
+  description = "Environment name (dev/staging/prod)"
   type        = string
 }
