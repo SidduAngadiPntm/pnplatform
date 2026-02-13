@@ -4,9 +4,14 @@
 # }
 
 module "ecs_cluster" {
-    source = "./terraform_modules/ecs_cluster"
-    
-    ecs_cluster_name = "ecs-${var.rresource_prefixs}-${var.environment}"
+  source = "./terraform_modules/ecs_cluster"
+
+  ecs_cluster_name = "ecs-${var.resource_prefix}-${var.environment}"
+
+  tags = {
+    Environment = var.environment
+    ManagedBy   = "terraform"
+  }
 }
 
 # module "ecs_services" {
