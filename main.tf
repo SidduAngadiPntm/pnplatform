@@ -1,7 +1,12 @@
-# module "vpc" {
-#     source = "terraform_modules/vpc_networking"
+module "vpc" {
+  source = "./terraform_modules/vpc"
 
-# }
+  environment            = var.environment
+  resource_prefix        = var.resource_prefix
+  vpc_cidr_block         = "10.0.0.0/16"
+  public_subnet_1_cidr   = "10.0.1.0/24"
+  public_subnet_1_az     = var.public_subnet_1_az
+ }
 
 module "ecs_cluster" {
   source = "./terraform_modules/ecs_cluster"
