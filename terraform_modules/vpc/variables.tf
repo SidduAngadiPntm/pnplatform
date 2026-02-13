@@ -23,5 +23,4 @@ variable "public_subnet_1_cidr" {
 variable "public_subnet_1_az" {
   description = "Availability Zone for public subnet 1"
   type        = string
-  default     = "eu-north-1a"
 }

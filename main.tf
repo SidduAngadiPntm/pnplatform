@@ -5,7 +5,7 @@ module "vpc" {
   resource_prefix        = var.resource_prefix
   vpc_cidr_block         = "10.0.0.0/16"
   public_subnet_1_cidr   = "10.0.1.0/24"
-  public_subnet_1_az     = "${var.aws_region}a"
+  public_subnet_1_az     = var.public_subnet_1_az
  }
 
 module "ecs_cluster" {
