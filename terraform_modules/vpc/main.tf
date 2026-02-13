@@ -48,8 +48,10 @@ resource "aws_route" "public_route" {
   gateway_id             = aws_internet_gateway.main.id
 }
 
-# resource "aws_route_table_association" "public_subnet_1_rt_assoc" {
-#   count = length(aws_subnet.subnet)
-#   subnet_id      = aws_subnet.subnet[count.index].id
-#   route_table_id = aws_route_table.public_rt.id
-# }
+resource "aws_route_table_association" "public_assoc" {
+  for_each = aws_subnet.subnet
+
+  subnet_id      = each.value.id
+  route_table_id = aws_route_table.public_rt.id
+}
+
