@@ -2,7 +2,7 @@
 # VPC Module Outputs
 ################################################################################
 
-output "vpc_details" {
+output "vpc_id" {
   description = "VPC ID"
   value       = module.vpc
 }
