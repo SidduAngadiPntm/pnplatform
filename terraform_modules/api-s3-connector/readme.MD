@@ -18,4 +18,6 @@ Response:
 
 # Upload file:
 
-curl -X PUT "<upload_url>" --upload-file myfile.txt
+curl -X PUT "${upload_url}" \
+  -H "Content-Type: application/octet-stream" \
+  --upload-file Attachment_01.pdf
